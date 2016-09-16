@@ -94,15 +94,10 @@ def get_kafka_producer(acks='all',
                        value_serializer=lambda v: json.dumps(v).encode('utf-8')):
     """
     Return a KafkaProducer that uses the SSLContext created with create_ssl_context.
-    Returns None if there are no Kafka brokers.
     """
-    brokers = get_kafka_brokers()
-
-    if not brokers:
-        return None
 
     producer = KafkaProducer(
-        bootstrap_servers=brokers,
+        bootstrap_servers=get_kafka_brokers(),
         security_protocol='SSL',
         ssl_context=get_kafka_ssl_context(),
         value_serializer=value_serializer,
@@ -116,18 +111,13 @@ def get_kafka_consumer(topic=None,
                        value_deserializer=lambda v: json.loads(v.decode('utf-8'))):
     """
     Return a KafkaConsumer that uses the SSLContext created with create_ssl_context.
-    Returns None if there are no Kafka brokers.
     """
-    brokers = get_kafka_brokers()
-
-    if not brokers:
-        return None
 
     # Create the KafkaConsumer connected to the specified brokers. Use the
     # SSLContext that is created with create_ssl_context.
     consumer = KafkaConsumer(
         topic,
-        bootstrap_servers=brokers,
+        bootstrap_servers=get_kafka_brokers(),
         security_protocol='SSL',
         ssl_context=get_kafka_ssl_context(),
         value_deserializer=value_deserializer
