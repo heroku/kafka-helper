@@ -2,6 +2,11 @@
 
 `kafka_helper` makes it easy to use the [kafka-python](https://github.com/dpkp/kafka-python) library with [Apache Kafka on Heroku](https://www.heroku.com/kafka). It takes care of parsing the Kafka config vars and establishing an SSL context.
 
+## Installation
+```
+pip install kafka-helper
+```
+
 ## Usage
 
 ```
