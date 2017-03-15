@@ -6,7 +6,10 @@ import os
 import json
 import ssl
 from tempfile import NamedTemporaryFile
-from urlparse import urlparse
+try:
+    from urlparse import urlparse
+except ImportError:
+    from urllib.parse import urlparse
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
