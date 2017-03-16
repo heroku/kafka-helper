@@ -11,6 +11,8 @@ try:
 except ImportError:
     from urllib.parse import urlparse
 
+from base64 import standard_b64encode
+
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 
@@ -41,14 +43,14 @@ def get_kafka_ssl_context():
     with NamedTemporaryFile(suffix='.crt') as cert_file, \
          NamedTemporaryFile(suffix='.key') as key_file, \
          NamedTemporaryFile(suffix='.crt') as trust_file:
-        cert_file.write(os.environ['KAFKA_CLIENT_CERT'])
+        cert_file.write(os.environ['KAFKA_CLIENT_CERT'].encode('utf-8'))
         cert_file.flush()
 
         # setup cryptography to password encrypt/protect the client key so it's not in the clear on
         # the filesystem.  Use the generated password in the call to load_cert_chain
-        passwd = os.urandom(33).encode('base64')
+        passwd = standard_b64encode(os.urandom(33))
         private_key = serialization.load_pem_private_key(
-            os.environ['KAFKA_CLIENT_CERT_KEY'],
+            os.environ['KAFKA_CLIENT_CERT_KEY'].encode('utf-8'),
             password=None,
             backend=default_backend()
         )
@@ -60,7 +62,7 @@ def get_kafka_ssl_context():
         key_file.write(pem)
         key_file.flush()
 
-        trust_file.write(os.environ['KAFKA_TRUSTED_CERT'])
+        trust_file.write(os.environ['KAFKA_TRUSTED_CERT'].encode('utf-8'))
         trust_file.flush()
 
         # create an SSLContext for passing into the kafka provider using the create_default_context
