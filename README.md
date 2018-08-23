@@ -26,5 +26,5 @@ To get a consumer of a topic and iterate over its stream:
 ```
 consumer = kafka_helper.get_kafka_consumer(topic='my-topic')
 for message in consumer:
-    print message
+    print(message)
 ```
