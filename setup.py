@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
   name = 'kafka-helper',
-  version = '0.1',
+  version = '0.2',
   description = 'Makes it easy to use the kafka-python library with Apache Kafka on Heroku',
   py_modules=['kafka_helper'],
   author = 'Arthur Louie',
