@@ -7,9 +7,9 @@ import json
 import ssl
 from tempfile import NamedTemporaryFile
 try:
-    from urlparse import urlparse
-except ImportError:
     from urllib.parse import urlparse
+except ImportError:
+    from urlparse import urlparse
 
 from base64 import standard_b64encode
 
