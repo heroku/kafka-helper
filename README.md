@@ -43,4 +43,4 @@ Please report any security issue as described in [SECURITY.md](SECURITY.md).
 
 ## License
 
-Licensed under the MIT License. See [LICENSE.txt](LICENSE.txt) for details.
+Licensed under the Apache License, Version 2.0. See [LICENSE.txt](LICENSE.txt) for details.
