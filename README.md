@@ -28,3 +28,19 @@ consumer = kafka_helper.get_kafka_consumer(topic='my-topic')
 for message in consumer:
     print(message)
 ```
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for information on how to contribute.
+
+## Code of Conduct
+
+This project adheres to the [Salesforce Open Source Community Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Security
+
+Please report any security issue as described in [SECURITY.md](SECURITY.md).
+
+## License
+
+Licensed under the MIT License. See [LICENSE](LICENSE) for details.
