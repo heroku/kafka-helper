@@ -113,7 +113,8 @@ def get_kafka_producer(acks='all',
 
 
 def get_kafka_consumer(topic=None,
-                       value_deserializer=lambda v: json.loads(v.decode('utf-8'))):
+                       value_deserializer=lambda v: json.loads(v.decode('utf-8')),
+                       group_id=None):
     """
     Return a KafkaConsumer that uses the SSLContext created with create_ssl_context.
     """
@@ -125,7 +126,8 @@ def get_kafka_consumer(topic=None,
         bootstrap_servers=get_kafka_brokers(),
         security_protocol='SSL',
         ssl_context=get_kafka_ssl_context(),
-        value_deserializer=value_deserializer
+        value_deserializer=value_deserializer,
+        group_id=group_id
     )
 
     return consumer
