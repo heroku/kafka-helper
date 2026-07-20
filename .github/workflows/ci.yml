@@ -1,5 +1,12 @@
 name: build-and-test
-on: push
+on:
+  push:
+    # Avoid duplicate builds on PRs.
+    branches:
+      - main
+  pull_request:
+permissions:
+  contents: read
 jobs:
   lint:
     runs-on: ubuntu-latest
