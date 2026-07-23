@@ -1,0 +1,54 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "cron"
+      cronjob: "0 11 * * MON,WED"
+    labels:
+      - "edit-on-call"
+      - "dependencies"
+    groups:
+      # Security & crypto
+      security:
+        patterns:
+          - "cryptography"
+          - "cffi"
+          - "pycparser"
+          - "pyasn1"
+          - "idna*"
+        update-types:
+          - "minor"
+          - "patch"
+      # Kafka client
+      kafka:
+        patterns:
+          - "kafka-python"
+        update-types:
+          - "minor"
+          - "patch"
+      # Packaging & general utilities
+      support:
+        patterns:
+          - "six"
+          - "wheel"
+          - "setuptools"
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "cron"
+      cronjob: "0 11 * * MON,WED"
+    labels:
+      - "edit-on-call"
+      - "dependencies"
+    groups:
+      actions:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
