@@ -2,10 +2,11 @@
 Helper methods for creating the kafka-python KafkaProducer and KafkaConsumer objects.
 """
 
-import os
 import json
+import os
 import ssl
 from tempfile import NamedTemporaryFile
+
 try:
     from urllib.parse import urlparse
 except ImportError:
@@ -15,8 +16,7 @@ from base64 import standard_b64encode
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
-
-from kafka import KafkaProducer, KafkaConsumer
+from kafka import KafkaConsumer, KafkaProducer
 
 
 def get_kafka_ssl_context():
@@ -91,7 +91,7 @@ def get_kafka_brokers():
     if not os.environ.get('KAFKA_URL'):
         raise RuntimeError('The KAFKA_URL config variable is not set.')
 
-    return ['{}:{}'.format(parsedUrl.hostname, parsedUrl.port) for parsedUrl in
+    return [f'{parsedUrl.hostname}:{parsedUrl.port}' for parsedUrl in
             [urlparse(url) for url in os.environ.get('KAFKA_URL').split(',')]]
 
 
