@@ -5,6 +5,6 @@ idna==3.18
 ipaddress==1.0.23
 kafka-python==3.0.10
 pyasn1==0.6.4
-pycparser==2.14
+pycparser==3.0
 six==1.17.0
 wheel==0.48.0
