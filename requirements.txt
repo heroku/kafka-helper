@@ -3,7 +3,7 @@ cryptography==50.0.2
 enum34==1.1.10
 idna==3.20
 ipaddress==1.0.23
-kafka-python==3.0.11
+kafka-python==3.0.12
 pyasn1==0.6.5
 pycparser==3.12
 six==1.17.0
